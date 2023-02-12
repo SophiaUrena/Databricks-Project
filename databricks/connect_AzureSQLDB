@@ -1,0 +1,9 @@
+#connect to Azure SQL DB
+dbPassword = dbutils.secrets.get(scope = databricksScopeName, key= passwordKey)
+serverurl = ${{ secrets.SERVERURL}}
+connectionProperties = {
+    'password':dbPassword,
+    'driver':'com.microsoft.sqlserver.jdbc.SQLServerDriver'
+}
+df = spark.read.jdbc(url = serverurl, table = 'dbo.FileDetailsFormat', properties= connectionProperties)
+display(df)

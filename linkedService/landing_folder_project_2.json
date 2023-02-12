@@ -1,0 +1,12 @@
+{
+	"name": "landing_folder_project_2",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "${{ secrets.DATABRICKS_PROJECT_URL }}",
+			"encryptedCredential": "${{ secrets.ENCRYPTED_CREDENTIAL_LINKED_SERVICE }}"
+		}
+	}
+}

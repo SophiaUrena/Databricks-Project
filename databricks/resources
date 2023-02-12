@@ -1,0 +1,16 @@
+import pyspark.sql.functions as F
+#from datetime import datetme as dt
+ 
+#Just change all the values here based on the resource name you have created in your environemnt and workspace.
+ 
+sqlDbName = 'azuredbproject2'
+dbUserName = 'sophiaurena'
+passwordKey = 'sqldbpasswordkey'
+stgAccountSASTokenKey = 'sastokenforstg'
+landingFileName =fileName #'Product'  #dbutils.widgets.get('Product')
+databricksScopeName ='project2scope'
+dbServer = 'azureprojectnum2'
+dbServerPortNumber ='1433'
+storageContainer ='inputdata'
+storageAccount='azuresproject2'
+landingMountPoint ='/mnt'

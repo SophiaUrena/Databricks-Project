@@ -1,0 +1,9 @@
+{
+	"name": "azureprojectnum2",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "${{ secrets.PRINCIPAL_ID }}",
+		"tenantId": "${{ secrets.TENANT_ID }}"
+	}
+}

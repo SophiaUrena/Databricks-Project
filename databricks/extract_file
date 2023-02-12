@@ -1,0 +1,5 @@
+#get the file name from the adf
+fileName = dbutils.widgets.get('fileName')
+#fileName = 'Product.csv'
+fileNameWithoutExt = fileName.split('.')[0]
+print(fileNameWithoutExt)

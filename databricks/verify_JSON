@@ -1,0 +1,37 @@
+df1 = spark.read.csv('/mnt/landing/'+fileName, inferSchema=True, header=True)
+#display(df1)
+ 
+# Rule
+errorFlag=False
+errorMessage = ''
+totalcount = df1.count()
+print(totalcount)
+distinctCount = df1.distinct().count()
+print(distinctCount)
+if distinctCount !=totalcount:
+    errorFlag = True
+    errorMessage = 'Duplication Found. Rule 1 Failed'
+print(errorMessage)
+    
+# Rule 2
+df2 = df.filter(df.FileName==fileNameWithoutExt).select('ColumnName','ColumnDateFormat' )
+rows = df2.collect()
+for r in rows:
+    colName = r[0]
+    colFormat =r[1]
+    print(colName, colFormat)
+    #display(df1.filter(F.to_date(colName, colFormat).isNull() ==True))
+    formatCount =df1.filter(F.to_date(colName, colFormat).isNotNull() ==True).count()
+    if formatCount == totalcount:
+        errorFlag = True
+        errorMessage = errorMessage +' DateFormate is incorrect for {} '.format(colName)
+    else:
+        print('All rows are good for ', colName)
+print(errorMessage)
+ 
+if errorFlag:
+    dbutils.fs.mv('/mnt/landing/'+fileName,'/mnt/rejected/'+fileName )
+    dbutils.notebook.exit('{"errorFlag": "true", "errorMessage":"'+errorMessage +'"}')
+else:
+    dbutils.fs.mv('/mnt/landing/'+fileName,'/mnt/staging/'+fileName )
+    dbutils.notebook.exit('{"errorFlag": "false", "errorMessage":"No error"}')
