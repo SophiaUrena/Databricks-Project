@@ -19,3 +19,6 @@ Strategy Inspired by Udemy Course: 2 Real World Azure Data Engineer Project End 
 - Sequal Server Management Studio was used to connect SQL Database to manage the SQL infrastructure
 - Azure Key Vault stored secrets and generated the SAS token used thoughout the project
 - Project triggers when a CSV file is place into the landing folder
+
+
+
